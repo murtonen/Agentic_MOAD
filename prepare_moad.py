@@ -8,17 +8,38 @@ import os
 import sys
 import time
 import argparse
-from app.api.content_manager import ContentManager
-from app.api.db_manager import DatabaseManager
+import json
+from app.utils.extractors.pptx_extractor import PPTXExtractor
+
+def extract_content_to_json(pptx_path, json_path):
+    """Extract content from PowerPoint and save to JSON."""
+    print(f"\n--- Preparing JSON Cache ---")
+    start_time = time.time()
+    
+    try:
+        extractor = PPTXExtractor(pptx_path)
+        content = extractor.extract_all_slides()
+        
+        # Save to JSON
+        with open(json_path, 'w', encoding='utf-8') as f:
+            json.dump(content, f, ensure_ascii=False, indent=2)
+        
+        print(f"JSON preparation completed in {time.time() - start_time:.2f} seconds")
+        print(f"Extracted {len(content)} slides")
+        print(f"JSON cache saved to: {json_path}")
+        
+        return content
+    except Exception as e:
+        print(f"ERROR: Failed to extract content: {str(e)}")
+        print("Please check that the PowerPoint file is valid and accessible.")
+        return None
 
 def main():
     """Main function to prepare MOAD content."""
     parser = argparse.ArgumentParser(description="Prepare MOAD content for faster queries")
     parser.add_argument('--pptx', default='moad.pptx', help='Path to the MOAD PowerPoint file')
-    parser.add_argument('--format', choices=['json', 'db', 'both'], default='both', 
-                      help='Output format: json, db, or both (default)')
-    parser.add_argument('--json-path', default='moad_content.json', help='Path to save JSON content')
-    parser.add_argument('--db-path', default='moad_db.sqlite', help='Path to save SQLite database')
+    parser.add_argument('--output', default='moad_content.json', help='Path to save the extracted content')
+    parser.add_argument('--skip-errors', action='store_true', help='Continue processing even if errors occur')
     args = parser.parse_args()
     
     if not os.path.exists(args.pptx):
@@ -27,29 +48,15 @@ def main():
     
     print(f"Preparing MOAD content from: {args.pptx}")
     
-    # Process JSON format
-    if args.format in ['json', 'both']:
-        print("\n--- Preparing JSON Cache ---")
-        start_time = time.time()
-        
-        content_manager = ContentManager(args.pptx, args.json_path)
-        content = content_manager.load_content()
-        
-        print(f"JSON preparation completed in {time.time() - start_time:.2f} seconds")
-        print(f"Extracted {len(content)} slides")
-        print(f"JSON cache saved to: {args.json_path}")
+    # Extract content
+    content = extract_content_to_json(args.pptx, args.output)
     
-    # Process SQLite database format
-    if args.format in ['db', 'both']:
-        print("\n--- Preparing SQLite Database ---")
-        start_time = time.time()
-        
-        db_manager = DatabaseManager(args.db_path, args.pptx)
-        slides_count = db_manager.import_from_pptx()
-        
-        print(f"Database preparation completed in {time.time() - start_time:.2f} seconds")
-        print(f"Imported {slides_count} slides into the database")
-        print(f"SQLite database saved to: {args.db_path}")
+    if content is None and not args.skip_errors:
+        print("\nExtraction failed. Please check the errors above.")
+        return 1
+    elif content is None:
+        print("\nExtraction had errors but --skip-errors flag was set.")
+        print("Continuing with partial results.")
     
     print("\nMOAD content preparation complete!")
     print("You can now start the application for faster queries.")

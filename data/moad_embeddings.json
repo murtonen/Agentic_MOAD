@@ -1,0 +1,44 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "created_at": "2023-09-01",
+    "source": "ServiceNow MOAD PowerPoint"
+  },
+  "chunks": [
+    {
+      "id": "chunk_001",
+      "title": "ITSM License Overview",
+      "slide_number": 12,
+      "content": "ServiceNow ITSM is available in four license tiers: Standard, Professional, Professional Plus (Pro+), and Enterprise. Each tier builds upon the previous one, adding more features and capabilities.\n\nStandard: Core incident, problem, change management\nProfessional: Standard + Service Catalog, SLA Management\nProfessional Plus: Professional + Performance Analytics, Virtual Agent\nEnterprise: Pro+ + Predictive Intelligence, Process Optimization",
+      "source_file": "ServiceNow_MOAD_2023.pptx"
+    },
+    {
+      "id": "chunk_002",
+      "title": "ITSM Feature Comparison",
+      "slide_number": 13,
+      "content": "Feature Comparison Across ITSM License Tiers:\n\nIncident Management: Standard ✓, Professional ✓, Pro+ ✓, Enterprise ✓\nProblem Management: Standard ✓, Professional ✓, Pro+ ✓, Enterprise ✓\nChange Management: Standard ✓, Professional ✓, Pro+ ✓, Enterprise ✓\nService Catalog: Standard ✗, Professional ✓, Pro+ ✓, Enterprise ✓\nSLA Management: Standard ✗, Professional ✓, Pro+ ✓, Enterprise ✓\nVirtual Agent: Standard ✗, Professional ✗, Pro+ ✓, Enterprise ✓\nPerformance Analytics: Standard ✗, Professional ✗, Pro+ ✓, Enterprise ✓\nPredictive Intelligence: Standard ✗, Professional ✗, Pro+ ✗, Enterprise ✓\nProcess Optimization: Standard ✗, Professional ✗, Pro+ ✗, Enterprise ✓",
+      "source_file": "ServiceNow_MOAD_2023.pptx"
+    },
+    {
+      "id": "chunk_003",
+      "title": "Virtual Agent Capabilities",
+      "slide_number": 25,
+      "content": "Virtual Agent Capabilities by License Tier:\n\nStandard: Virtual Agent not included.\nProfessional: Virtual Agent not included.\nProfessional Plus: Basic Virtual Agent capabilities including pre-built conversation flows for common IT service requests, password resets, and knowledge article searches.\nEnterprise: Advanced Virtual Agent with all Pro+ features plus AI-powered topic suggestions, NLU enhancements, and conversation analytics.",
+      "source_file": "ServiceNow_MOAD_2023.pptx"
+    },
+    {
+      "id": "chunk_004",
+      "title": "Workplace Service Delivery",
+      "slide_number": 37,
+      "content": "Workplace Service Delivery (WSD) Features:\n\n1. Workplace Reservation Management: Allow employees to reserve workspaces, meeting rooms, and resources.\n2. Workplace Space Mapping: Interactive floor plans for spatial awareness and navigation.\n3. Workplace Visitor Management: Register and track visitors and their appointments.\n4. Workplace Case Management: Handle workplace-related requests and incidents.\n5. Workplace Space Management: Track and manage physical spaces and assets.\n\nWSD is available as a separate product offering and is not included in the ITSM license tiers.",
+      "source_file": "ServiceNow_MOAD_2023.pptx"
+    },
+    {
+      "id": "chunk_005",
+      "title": "Predictive Intelligence Overview",
+      "slide_number": 42,
+      "content": "Predictive Intelligence Overview:\n\nPredictive Intelligence uses machine learning to automate routine tasks and provide insights for better decision-making. Key capabilities include:\n\n1. Similar Ticket Clustering: Groups related incidents to identify patterns.\n2. Anomaly Detection: Identifies unusual patterns in service metrics.\n3. Assignment Recommendations: Suggests the best assignment group for incidents.\n4. Major Incident Prediction: Identifies potential major incidents before they occur.\n5. Sentiment Analysis: Analyzes user sentiment in interactions.\n\nPredictive Intelligence is only included in the Enterprise license tier. It is not available in Standard, Professional, or Professional Plus.",
+      "source_file": "ServiceNow_MOAD_2023.pptx"
+    }
+  ]
+} 

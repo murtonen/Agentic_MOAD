@@ -1,2 +1,0 @@
-Note: This is a placeholder file to ensure the static directory exists.
-Icons used in the application are referenced from external sources or provided via Bootstrap. 

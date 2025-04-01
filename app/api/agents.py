@@ -27,7 +27,7 @@ class RetrievalAgent:
             moad_content: Dictionary mapping slide IDs to slide content
         """
         self.moad_content = moad_content
-        self.llm = ChatOpenAI(temperature=0, model_name="gpt-4")
+        self.llm = ChatOpenAI(temperature=0, model_name="gpt-4o")
         
         self.retrieval_prompt = PromptTemplate(
             input_variables=["query", "num_results"],
@@ -82,7 +82,7 @@ class AnalysisAgent:
     """Agent responsible for analyzing retrieved information."""
     
     def __init__(self):
-        self.llm = ChatOpenAI(temperature=0, model_name="gpt-4")
+        self.llm = ChatOpenAI(temperature=0, model_name="gpt-4o")
         
         self.analysis_prompt = PromptTemplate(
             input_variables=["query", "documents"],
@@ -122,7 +122,7 @@ class VerificationAgent:
     
     def __init__(self, moad_content: Dict[str, Any]):
         self.moad_content = moad_content
-        self.llm = ChatOpenAI(temperature=0, model_name="gpt-4")
+        self.llm = ChatOpenAI(temperature=0, model_name="gpt-4o")
         
         self.verification_prompt = PromptTemplate(
             input_variables=["analysis", "documents"],
@@ -170,7 +170,7 @@ class SummarizationAgent:
     """Agent responsible for creating concise summaries."""
     
     def __init__(self):
-        self.llm = ChatOpenAI(temperature=0, model_name="gpt-4")
+        self.llm = ChatOpenAI(temperature=0, model_name="gpt-4o")
         
         self.summarization_prompt = PromptTemplate(
             input_variables=["query", "analysis", "verification"],

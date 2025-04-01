@@ -1,95 +1,104 @@
 # MOAD AI Query Application
 
-An advanced multi-agent system for querying ServiceNow's Mother of All Decks (MOAD), providing intelligent, formatted answers with a focus on license and feature comparison capabilities.
+A powerful AI-powered application for querying ServiceNow product, license, and feature information based on the MOAD (Mother of All Demos) content.
 
 ## Features
 
-- **Intelligent Query Processing**: Extract meaningful information from ServiceNow's MOAD
-- **Semantic & Keyword Search**: Find relevant slides using combined search strategies
-- **Specialized License Analysis**: Enhanced capability to understand license differences across ServiceNow tiers
-- **Recursive Information Gathering**: Automatically search for additional context when needed
-- **Smart Visual Formatting**: Present information in a clean, structured dashboard-style format
-- **Query Caching**: Speed up repeated queries with intelligent caching (with bypass option)
-- **Performance Monitoring**: Track query processing times and system performance
+- **AI-Powered Queries**: Ask natural language questions about ServiceNow products, licenses, and features
+- **Smart Caching**: Responses are cached to improve performance
+- **Source References**: Answers include references to the source slides
+- **Modern UI**: Clean, responsive interface built with Bootstrap
 
-## Architecture
+## Requirements
 
-This application uses a sophisticated multi-agent architecture:
+- Python 3.8+
+- Flask
+- OpenAI API key
+- ServiceNow MOAD content (extracted via the prepare_moad.py script)
 
-1. **Content Manager**
-   - Extracts and indexes content from the MOAD PowerPoint
-   - Provides both semantic and keyword search capabilities
-   - Preserves structural information like tables and sections
+## Installation
 
-2. **License Analyzer**
-   - Specialized for understanding ServiceNow license differences
-   - Contains domain knowledge about feature availability across tiers
-   - Can analyze tables and capability matrices
+1. Clone the repository:
 
-3. **Summary Generation Agents**
-   - Comprehensive Summary Agent: Creates detailed summaries for general queries
-   - License Summary Agent: Specialized for license/feature comparisons
+```
+git clone https://github.com/yourusername/moad-ai-query.git
+cd moad-ai-query
+```
 
-4. **Visual Design Agent**
-   - Transforms technical content into dashboard-style visual presentations
-   - Adapts layout based on query type (comparison, availability, etc.)
-   - Uses appropriate visual elements (checkmarks, color-coding, etc.)
+2. Install the required packages:
 
-5. **Query Cache**
-   - Stores and retrieves previous query results
-   - Applies expiration policies to ensure freshness
-   - Provides bypass option for force-refreshing content
+```
+pip install -r requirements.txt
+```
 
-## Setup
+3. Set up your environment variables:
 
-1. Clone this repository
-2. Create a virtual environment: `python -m venv venv`
-3. Activate the virtual environment:
-   - Windows: `.\venv\Scripts\activate`
-   - Linux/Mac: `source venv/bin/activate`
-4. Install dependencies: `pip install -r requirements.txt`
-5. Copy `.env.example` to `.env` and add your OpenAI API key
-6. Prepare the MOAD content (optional but recommended):
-   ```
-   python prepare_moad.py --pptx_path=moad.pptx --output_format=json
-   ```
-7. Run the application: `python test_app.py`
+Create a `.env` file in the root directory with the following content:
+
+```
+# OpenAI API Configuration
+OPENAI_API_KEY=your_openai_api_key_here
+
+# Flask Configuration
+FLASK_APP=app
+FLASK_ENV=development
+FLASK_DEBUG=True
+
+# Cache Configuration
+CACHE_MAX_AGE_HOURS=24
+
+# Server Configuration
+FLASK_PORT=5000
+FLASK_HOST=127.0.0.1
+```
+
+4. Prepare the MOAD content:
+
+```
+python prepare_moad.py path/to/your/moad/presentation.pptx
+```
+
+## Running the Application
+
+Start the application with:
+
+```
+python run.py
+```
+
+Then open your browser to http://127.0.0.1:5000
 
 ## Usage
 
-1. Access the web interface at `http://localhost:5000`
-2. Enter your query about ServiceNow in the search box
-3. For queries requiring fresh data, enable "Bypass Cache" option
-4. Submit your query and view the formatted results
-5. View source slides to see where information was derived from
+1. Enter your question about ServiceNow in the search box
+2. Click "Submit Query" or press Enter
+3. View the results with source references
+4. Click on any of the example queries to try them out
 
-## Query Examples
+## Folder Structure
 
-- "What differences does virtual agent have in ITSM licenses? Like standard vs. pro vs. pro+?"
-- "Compare ITSM Standard, Pro and Enterprise"
-- "What features are in Workplace Service Delivery?"
-- "Does Standard license include Predictive Intelligence?"
-- "What is the pricing structure for CSM?"
-
-## Technical Details
-
-### Content Extraction
-The system extracts content from the MOAD PowerPoint, preserving structural elements like tables, lists, and sections. Content is cached to improve performance.
-
-### Search Methods
-- **Semantic Search**: Uses embeddings to find conceptually similar content (when available)
-- **Enhanced Keyword Search**: Weighted search with special handling for product names and features
-- **Specialized License Search**: Targeted searches for capability matrices and license information
-
-### Summary Generation
-The system uses OpenAI's GPT-4 to generate comprehensive summaries based on the retrieved content. For license queries, it employs specialized analysis to extract and infer differences between license tiers.
-
-### Visual Presentation
-Information is formatted into a clean, dashboard-style presentation with appropriate visual elements:
-- Color-coded license tier headings
-- Checkmarks and X marks for feature availability
-- Structured lists and tables for comparisons
-- Visual highlighting for important information
+```
+moad-ai-query/
+├── app/
+│   ├── models/         # Data models for the application
+│   ├── services/       # Business logic services
+│   ├── static/         # Static assets (CSS, JS, images)
+│   ├── templates/      # HTML templates
+│   └── utils/          # Utility functions and classes
+├── data/               # Data files (MOAD content, embeddings)
+├── .env                # Environment variables
+├── .env.example        # Example environment variables
+├── prepare_moad.py     # Script to prepare MOAD content
+├── requirements.txt    # Python dependencies
+├── run.py              # Application entry point
+└── README.md           # Project documentation
+```
 
 ## License
-This project is for demonstration purposes only. ServiceNow and MOAD are trademarks of ServiceNow, Inc. 
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgements
+
+- ServiceNow MOAD (Mother of All Demos) for content
+- OpenAI for providing the AI backend 
