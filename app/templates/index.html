@@ -14,34 +14,43 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
-    <div class="container">
+    <div class="container py-4">
         <div class="row justify-content-center">
             <div class="col-lg-10">
                 <!-- Header Section -->
-                <header class="text-center mb-4">
-                    <h1 class="mb-1">ServiceNow MOAD Query Tool</h1>
+                <header class="text-center mb-5">
+                    <h1 class="mb-2">ServiceNow MOAD Query Tool</h1>
                     <p class="text-muted">Get answers about ServiceNow licenses, features, and capabilities</p>
                 </header>
                 
                 <!-- Query Input Section -->
-                <div class="query-container">
+                <div class="query-container mb-5">
                     <h2 class="mb-4">What would you like to know about ServiceNow?</h2>
                     <form id="query-form">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" id="query-input" placeholder="Enter your question about ServiceNow...">
-                            <button class="btn btn-primary" type="submit" id="submit-btn">Submit Query</button>
+                            <input type="text" class="form-control form-control-lg" id="query-input" placeholder="What differences does virtual agent have in ITSM licenses?">
+                            <button class="btn btn-primary" type="submit" id="submit-btn">
+                                <i class="fas fa-search me-2"></i>Submit Query
+                            </button>
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="bypass-cache">
-                            <label class="form-check-label" for="bypass-cache">Bypass Cache</label>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div class="form-check form-switch">
+                                <div class="d-flex align-items-center">
+                                    <input class="form-check-input me-2" type="checkbox" role="switch" id="bypass-cache">
+                                    <label class="form-check-label" for="bypass-cache">Bypass Cache</label>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-sm btn-outline-secondary" id="clear-btn">
+                                <i class="fas fa-times me-1"></i>Clear
+                            </button>
                         </div>
-                        <div class="query-examples mt-3">
-                            <p><strong>Example questions:</strong></p>
+                        <div class="query-examples mt-4 p-3 border border-light rounded bg-light">
+                            <p class="mb-2"><strong><i class="fas fa-lightbulb me-2 text-warning"></i>Example questions:</strong></p>
                             <ul class="list-unstyled">
-                                <li><a href="#" class="example-query">What differences does virtual agent have in ITSM licenses?</a></li>
-                                <li><a href="#" class="example-query">Compare ITSM Standard, Pro and Enterprise</a></li>
-                                <li><a href="#" class="example-query">What features are in Workplace Service Delivery?</a></li>
-                                <li><a href="#" class="example-query">Does Standard license include Predictive Intelligence?</a></li>
+                                <li class="mb-2"><a href="#" class="example-query"><i class="fas fa-angle-right me-1"></i>What differences does virtual agent have in ITSM licenses?</a></li>
+                                <li class="mb-2"><a href="#" class="example-query"><i class="fas fa-angle-right me-1"></i>Compare ITSM Standard, Pro and Enterprise</a></li>
+                                <li class="mb-2"><a href="#" class="example-query"><i class="fas fa-angle-right me-1"></i>What features are in Workplace Service Delivery?</a></li>
+                                <li><a href="#" class="example-query"><i class="fas fa-angle-right me-1"></i>Does Standard license include Predictive Intelligence?</a></li>
                             </ul>
                         </div>
                     </form>
@@ -55,29 +64,44 @@
                     </div>
                 </div>
                 
-                <!-- Results Section -->
-                <div class="result-container" id="result-container" style="display: none;">
-                    <div class="summary-header">
-                        <h2>Summary</h2>
-                        <span class="verified-badge" id="verified-badge">Verified</span>
-                        <span class="ms-auto text-muted small" id="processing-time" style="display: none;">Processing time: 0.00s</span>
+                <!-- Results Section with improved separation -->
+                <div class="result-container shadow-sm rounded p-4" id="result-container" style="display: none;">
+                    <div class="summary-header d-flex align-items-center justify-content-between mb-4">
+                        <div class="d-flex align-items-center">
+                            <h2 class="mb-0">Summary</h2>
+                            <span class="verified-badge ms-3" id="verified-badge">Verified</span>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <span class="text-muted small me-3" id="processing-time" style="display: none;">Processing time: 0.00s</span>
+                            <button class="btn btn-sm btn-outline-primary" id="copy-btn" title="Copy to clipboard">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
                     </div>
                     
-                    <div id="summary-content">
+                    <div id="summary-content" class="mb-4">
                         <!-- Summary content will be dynamically inserted here -->
                     </div>
                     
-                    <!-- Source Slides Section -->
-                    <div class="sources-section">
-                        <h4>Source Slides</h4>
-                        <div id="source-slides">
-                            <!-- Source slide information will be dynamically inserted here -->
+                    <!-- Source Slides Section with collapsible feature -->
+                    <div class="sources-section mt-5">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4 class="mb-0"><i class="fas fa-file-powerpoint me-2 text-secondary"></i>Source Slides</h4>
+                            <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#sourceCollapse" aria-expanded="true" aria-controls="sourceCollapse">
+                                <i class="fas fa-chevron-up"></i>
+                            </button>
+                        </div>
+                        <div class="collapse show" id="sourceCollapse">
+                            <div id="source-slides" class="source-slides-container">
+                                <!-- Source slide information will be dynamically inserted here -->
+                            </div>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Footer -->
-                <footer class="text-center mt-4 text-muted">
+                <footer class="text-center mt-5 text-muted">
+                    <hr>
                     <p><small>ServiceNow and MOAD are trademarks of ServiceNow, Inc.</small></p>
                 </footer>
             </div>

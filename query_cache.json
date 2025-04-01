@@ -1,7 +1,7 @@
 {
   "What differences does virtual agent have in ITSM licenses?": {
     "result": {
-      "summary": "Based on the provided sources, here are the differences in Virtual Agent capabilities across the ITSM license tiers:\n\n- **Standard License**: \n  - Virtual Agent: ✗ Not included\n\n- **Professional License**: \n  - Virtual Agent: ✗ Not included\n\n- **Professional Plus (Pro+) License**: \n  - Virtual Agent: ✓ Included with basic capabilities such as pre-built conversation flows for common IT service requests, password resets, and knowledge article searches.\n\n- **Enterprise License**: \n  - Virtual Agent: ✓ Included with advanced capabilities, including all Pro+ features plus AI-powered topic suggestions, NLU enhancements, and conversation analytics. \n\nThis comparison highlights that the Virtual Agent is only available starting from the Professional Plus tier, with enhanced features in the Enterprise tier.",
+      "summary": "Based on the provided sources, here are the differences in Virtual Agent capabilities across the ITSM license tiers:\n\n- **Standard**: \n  - Virtual Agent: ✗ Not included\n\n- **Professional**: \n  - Virtual Agent: ✗ Not included\n\n- **Professional Plus (Pro+)**: \n  - Virtual Agent: ✓ Included with basic capabilities such as pre-built conversation flows for common IT service requests, password resets, and knowledge article searches.\n\n- **Enterprise**: \n  - Virtual Agent: ✓ Included with advanced capabilities, including all Pro+ features plus AI-powered topic suggestions, NLU enhancements, and conversation analytics.",
       "sources": [
         {
           "title": "ITSM License Overview",
@@ -30,7 +30,7 @@
         }
       ]
     },
-    "timestamp": 1743515153.673826
+    "timestamp": 1743516246.503436
   },
   "Does Standard license include Predictive Intelligence?": {
     "result": {
@@ -64,5 +64,38 @@
       ]
     },
     "timestamp": 1743514953.352844
+  },
+  "What license is predictive intelligence in?": {
+    "result": {
+      "summary": "Based on the provided sources, **Predictive Intelligence** is included only in the **Enterprise** license tier of ServiceNow ITSM. It is not available in the Standard, Professional, or Professional Plus (Pro+) tiers.\n\n- **Standard**: ✗\n- **Professional**: ✗\n- **Professional Plus (Pro+)**: ✗\n- **Enterprise**: ✓",
+      "sources": [
+        {
+          "title": "ITSM License Overview",
+          "content": "ServiceNow ITSM is available in four license tiers: Standard, Professional, Professional Plus (Pro+), and Enterprise. Each tier builds upon the previo...",
+          "slide_number": 12
+        },
+        {
+          "title": "ITSM Feature Comparison",
+          "content": "Feature Comparison Across ITSM License Tiers:\n\nIncident Management: Standard ✓, Professional ✓, Pro+ ✓, Enterprise ✓\nProblem Management: Standard ✓, P...",
+          "slide_number": 13
+        },
+        {
+          "title": "Predictive Intelligence Overview",
+          "content": "Predictive Intelligence Overview:\n\nPredictive Intelligence uses machine learning to automate routine tasks and provide insights for better decision-ma...",
+          "slide_number": 42
+        },
+        {
+          "title": "Virtual Agent Capabilities",
+          "content": "Virtual Agent Capabilities by License Tier:\n\nStandard: Virtual Agent not included.\nProfessional: Virtual Agent not included.\nProfessional Plus: Basic ...",
+          "slide_number": 25
+        },
+        {
+          "title": "Workplace Service Delivery",
+          "content": "Workplace Service Delivery (WSD) Features:\n\n1. Workplace Reservation Management: Allow employees to reserve workspaces, meeting rooms, and resources.\n...",
+          "slide_number": 37
+        }
+      ]
+    },
+    "timestamp": 1743516274.117566
   }
 }
